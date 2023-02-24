@@ -222,7 +222,7 @@ const route = (event) => {
 
 const routes = {
   404: './pages/404.html',
-  "/": ["./index.html"],
+  "/": ["index"],
   '/register': ["register.", 'register'],
   "/signin": ["signIn", "signIn"],
   "/profile": ["profile", 'profile']
