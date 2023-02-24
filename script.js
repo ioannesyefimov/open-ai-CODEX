@@ -223,9 +223,9 @@ const route = (event) => {
 const routes = {
   404: './pages/404.html',
   "/": ["./index.html"],
-  '/register': ["./pages/auth/register.html", 'pages/auth/register.js'],
-  "/signin": ["./pages/auth/signIn.html", "pages/auth/signIn.js"],
-  "/profile": ["./pages/profile.html", 'pages/profile.js']
+  '/register': ["./pages/register.html", 'register'],
+  "/signin": ["./pages/signIn.html", "signIn"],
+  "/profile": ["./pages/profile.html", 'profile']
 }
 const handleLocation = async () => {
   const isLogged = localStorage.getItem('user')
@@ -244,7 +244,7 @@ const handleLocation = async () => {
   }
   const html = await fetch(route).then(data=> data.text())
   if(path !== '/'){
-    const JS = await import(`./${routes[path][1]}.js`)
+    const JS = await import(`./pages/${routes[path][1]}.js`)
   }
   if(route == './index.html') return console.log('main')
   appContainer.innerHTML = html;
