@@ -223,9 +223,9 @@ const route = (event) => {
 const routes = {
   404: './pages/404.html',
   "/": ["./index.html"],
-  '/register': ["./pages/register.html", 'register'],
-  "/signin": ["./pages/signIn.html", "signIn"],
-  "/profile": ["./pages/profile.html", 'profile']
+  '/register': ["register.", 'register'],
+  "/signin": ["signIn", "signIn"],
+  "/profile": ["profile", 'profile']
 }
 const handleLocation = async () => {
   const isLogged = localStorage.getItem('user')
@@ -242,12 +242,13 @@ const handleLocation = async () => {
   if(!isLogged &&  route.includes('profile')) {
     history.back()
   }
-  const html = await fetch(route).then(data=> data.text())
+  const html = await import(`./pages/${route}.html`)
+  
   if(path !== '/'){
     const JS = await import(`./pages/${routes[path][1]}.js`)
   }
   if(route == './index.html') return console.log('main')
-  appContainer.innerHTML = html;
+  appContainer.innerHTML = html.default;
   localStorage.removeItem('DND')
 
 };
