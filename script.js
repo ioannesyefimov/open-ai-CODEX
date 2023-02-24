@@ -223,7 +223,7 @@ const route = (event) => {
 const routes = {
   404: './pages/404.html',
   "/": ["index"],
-  '/register': ["register.", 'register'],
+  '/register': ["register", 'register'],
   "/signin": ["signIn", "signIn"],
   "/profile": ["profile", 'profile']
 }
@@ -242,6 +242,7 @@ const handleLocation = async () => {
   if(!isLogged &&  route.includes('profile')) {
     history.back()
   }
+  if(path == '/') return
   const html = await import(`./pages/${route}.html`)
   
   if(path !== '/'){
@@ -277,10 +278,10 @@ const navbarTemplateSignIn =
  `
 
   <li class="nav-link" id="loggedIn" >
-    <a href="/" id="signout-btn"  class="nav-btn">SignOut</a> 
+    <a href="/" id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
   </li>
   <li class="nav-link" id="loggedIn" >
-    <a href="/profile" id="profile-btn" class="nav-btn"><img id="profile-img" src="${user}" alt="profile image" /></a> 
+    <a href="/profile" id="profile-btn" class="nav-btn link-tag"><img id="profile-img" src="${user}" alt="profile image" /></a> 
   </li>
  
 
@@ -289,10 +290,10 @@ const navbarTemplateSignIn =
 const navbarTemplateLoggedOut = 
     `
    <li  class="nav-link" id="loggedOut">
-      <a href="/register" class="link-tag">Register</a> 
+      <a href="/register"  class="link-tag">Register</a> 
       </li>
     <li class='nav-link' id="loggedOut">
-      <a href="/signin" class="link-tag">Sign In</a>
+      <a href="/signin"  class="link-tag">Sign In</a>
     </li>
 `
   
@@ -318,6 +319,12 @@ window.addEventListener('load', async()=>{
   if(loggedUser?.name){
     render(navbarTemplateSignIn, navbar )
     $query('#signout-btn').addEventListener('click', handleSignOut)
+    const navLinks =    $query('.nav-link')
+    for(let link of navLinks){
+      link.addEventListener('click', (e)=>{
+        route(e)
+      })
+    }
       
   } else if(!loggedUser) {
     render(navbarTemplateLoggedOut, navbar )

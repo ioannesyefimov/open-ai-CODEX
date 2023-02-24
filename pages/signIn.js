@@ -14,7 +14,7 @@ const handleSignIn = async(e) =>{
         alert('Please fill in form')
         return
     }
-   const response = await fetch('http://localhost:5000/api/v1/signin', {
+   const response = await fetch('https://c0dinex.onrender.com/api/v1/signin', {
     method:'POST',
     headers:{
         "Content-Type": "application/json"
