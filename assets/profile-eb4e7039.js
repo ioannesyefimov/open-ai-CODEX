@@ -1,9 +1,9 @@
 const[c,d]=useState(null),u=`
   <li class="nav-link" id="loggedIn" >
-    <a href="/" id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
+    <a href="#" onclick=(onNavClick('/'); return false) id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
   </li>
   <li class="nav-link" id="loggedIn" >
-    <a href="/" id="back-btn" class="nav-btn link-tag">Back</a> 
+    <a href="#" onclick=(onNavClick('/'); return false) id="back-btn" class="nav-btn link-tag">Back</a> 
   </li>
 
 `,g=e=>($query("#searchMessage").addEventListener("change",m),`
