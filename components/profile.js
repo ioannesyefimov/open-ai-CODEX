@@ -1,16 +1,8 @@
-
+import { navbarTemplateProfile } from "./navigation"
+import { $query } from "./utils"
 const [stateQUESTIONS, setStateQuestions] = useState(null)
 
-const navbarTemplateProfile = 
- `
-  <li class="nav-link" id="loggedIn" >
-    <a href="#" onclick=(onNavClick('/'); return false) id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
-  </li>
-  <li class="nav-link" id="loggedIn" >
-    <a href="#" onclick=(onNavClick('/'); return false) id="back-btn" class="nav-btn link-tag">Back</a> 
-  </li>
 
-`
 
 const profileCredentialsTemplate = (user) =>{
   $query('#searchMessage').addEventListener('change', handleInputChange)
@@ -48,9 +40,6 @@ const handleInputChange = (event)=>{
 
 const profileMessagesTemplate = (messages) => {
      $query('#messages-container').innerHTML = ``
-
-  
- 
 
   if(messages.length > 1 ){
     messages.map((msg,i) => {
@@ -148,6 +137,7 @@ async function profileHashLoad () {
   
   if(LoggedUser){
     // wait until state of app is changed
+    render(navbarTemplateProfile, $query('#navbar'))
     const loadProfileCredentials = setInterval(()=>{
       render(profileCredentialsTemplate(LoggedUser),document.querySelector('#credentials') )
     }, 20)
@@ -172,10 +162,7 @@ async function profileHashLoad () {
 
 
 // Change state of the app when loaded profile route
-if(window.location.pathname === '/profile'){
   profileHashLoad()
-}
-render(navbarTemplateProfile, document.querySelector('#navbar') )
 
 
  
