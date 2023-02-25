@@ -1,3 +1,4 @@
+
 // function to select element 
 function $query(selector) {
   if (typeof selector === 'object' && selector !== null) {
@@ -186,8 +187,8 @@ const alertDivTemplate = (ACTION)=>{
     <span>You are missing on saving your questions so that you can look back at them later</span>
     <p>Want to get your questions saved?</p>
     <div class="wrapper">
-      <a href="/register" id="register-btn" class=" nav-btn link-tag login-btn">Register</a> 
-      <a href="/signin" id="signin-btn" class="nav-btn link-tag login-btn">Sign In</a>
+      <a onclick="(e)=>e.preventDefault()" href="/register" id="register-btn" class=" nav-btn link-tag login-btn">Register</a> 
+      <a onclick="(e)=>e.preventDefault()" href="/signin" id="signin-btn" class="nav-btn link-tag login-btn">Sign In</a>
     </div>
     <button class="back-btn" id="hide-btn">No, thanks</button>
 
@@ -243,7 +244,7 @@ const handleLocation = async () => {
    
   } 
   if(path == '/'){
-    return console.log('main')
+    return
    } 
   if(!isLogged &&  path == '/profile') {
     history.back()
@@ -285,10 +286,10 @@ const navbarTemplateSignIn =
  `
 
   <li class="nav-link" id="loggedIn" >
-    <a href="/" id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
+    <a onclick="(e)=>e.preventDefault()" href="/" id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
   </li>
   <li class="nav-link" id="loggedIn" >
-    <a href="/profile" id="profile-btn" class="nav-btn link-tag">
+    <a onclick="(e)=>e.preventDefault()" href="/profile" id="profile-btn" class="nav-btn link-tag">
     </a> 
   </li>
  
@@ -298,10 +299,10 @@ const navbarTemplateSignIn =
 const navbarTemplateLoggedOut = 
     `
    <li  class="nav-link" id="loggedOut">
-      <a href="/register"  class="link-tag">Register</a> 
+      <a onclick="(e)=>e.preventDefault()" href="/register"  class="link-tag">Register</a> 
       </li>
     <li class='nav-link' id="loggedOut">
-      <a href="/signin"  class="link-tag">Sign In</a>
+      <a onclick="(e)=>e.preventDefault()" href="/signin"  class="link-tag">Sign In</a>
     </li>
 `
   
