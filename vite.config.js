@@ -1,5 +1,4 @@
 import dynamicImport from 'vite-plugin-dynamic-import'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 
 const htmlImport = {
@@ -20,14 +19,7 @@ const htmlImport = {
   }
   
   export default {
-    plugins: [ htmlImport, dynamicImport(),
-       viteStaticCopy({
-        targets: [
-            {
-                src: '_redirects',
-                dest: ''
-            },
+    plugins: [ htmlImport, dynamicImport()
         ]
-        }) ]
    
   }
