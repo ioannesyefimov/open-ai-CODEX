@@ -251,12 +251,12 @@ const handleLocation = async () => {
     window.history.back()
   }
  
-  const html = await import(`./pages/${route}.html`)
+  const html = await fetch(`./pages/${route}.html`).then(resp=>resp.text())
   
   if(path !== '/' && route !== routes[404]){
     const JS = await import(`./pages/${route}.js`)
   }
-  appContainer.innerHTML = html.default
+  appContainer.innerHTML = html
   localStorage.removeItem('DND')
 
 };
