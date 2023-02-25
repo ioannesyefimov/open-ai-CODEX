@@ -1,3 +1,4 @@
+import dynamicImport from 'vite-plugin-dynamic-import'
 const htmlImport = {
     name: "htmlImport",
     /**
@@ -16,6 +17,6 @@ const htmlImport = {
   }
   
   export default {
-    plugins: [ htmlImport ],
+    plugins: [ htmlImport, dynamicImport() ],
     
   }

@@ -349,6 +349,20 @@ button:focus-visible {
    font-size: 2rem;
 }
 
+#profile-btn {
+  background-image: url('./assets/user.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 35px;
+  padding: 1rem;
+  border-radius: 50%;
+  height: 35px;
+
+}
+#profile-btn:hover {
+  background-color: #10a37f;
+}
+
 #name {
   color:gold;
   text-transform: capitalize;

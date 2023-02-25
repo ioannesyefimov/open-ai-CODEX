@@ -221,17 +221,20 @@ const route = (event) => {
 }
 
 const routes = {
-  404: './pages/404.html',
-  "/": ["index"],
-  '/register': ["register", 'register'],
-  "/signin": ["signIn", "signIn"],
-  "/profile": ["profile", 'profile']
+  404: '404',
+  "/": ["./index"],
+  '/register': ["register"],
+  "/signin": ["signIn"],
+  "/profile": ["profile"]
 }
 const handleLocation = async () => {
   const isLogged = localStorage.getItem('user')
   const path = window.location.pathname;
-  const route = routes[path][0] || routes[404];
+  const route = routes[path] || routes[404];
   // append alert div if user is logged out and didn't set DND previously, and remove if they aren't
+  console.log(path)
+
+  
   if(!isLogged && path == '/' && !localStorage.getItem('DND') ){
     setTimeout (()=>{
       alertDivTemplate('append')
@@ -239,17 +242,21 @@ const handleLocation = async () => {
     },10000)
    
   } 
-  if(!isLogged &&  route.includes('profile')) {
+  if(path == '/'){
+    return console.log('main')
+   } 
+  if(!isLogged &&  path == '/profile') {
     history.back()
+  } else if (isLogged && path == '/signin' || path == '/register'){
+    window.history.back()
   }
-  if(path == '/') return
+ 
   const html = await import(`./pages/${route}.html`)
   
-  if(path !== '/'){
-    const JS = await import(`./pages/${routes[path][1]}.js`)
+  if(path !== '/' && route !== routes[404]){
+    const JS = await import(`./pages/${route}.js`)
   }
-  if(route == './index.html') return console.log('main')
-  appContainer.innerHTML = html.default;
+  appContainer.innerHTML = html.default
   localStorage.removeItem('DND')
 
 };
@@ -281,7 +288,8 @@ const navbarTemplateSignIn =
     <a href="/" id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
   </li>
   <li class="nav-link" id="loggedIn" >
-    <a href="/profile" id="profile-btn" class="nav-btn link-tag"><img id="profile-img" src="${user}" alt="profile image" /></a> 
+    <a href="/profile" id="profile-btn" class="nav-btn link-tag">
+    </a> 
   </li>
  
 
