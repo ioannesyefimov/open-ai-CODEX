@@ -187,8 +187,8 @@ const alertDivTemplate = (ACTION)=>{
     <span>You are missing on saving your questions so that you can look back at them later</span>
     <p>Want to get your questions saved?</p>
     <div class="wrapper">
-      <a onclick="(e)=>e.preventDefault()" href="/register" id="register-btn" class=" nav-btn link-tag login-btn">Register</a> 
-      <a onclick="(e)=>e.preventDefault()" href="/signin" id="signin-btn" class="nav-btn link-tag login-btn">Sign In</a>
+      <a onclick="" href="/register" id="register-btn" class=" nav-btn link-tag login-btn">Register</a> 
+      <a onclick="" href="/signin" id="signin-btn" class="nav-btn link-tag login-btn">Sign In</a>
     </div>
     <button class="back-btn" id="hide-btn">No, thanks</button>
 
@@ -233,7 +233,6 @@ const handleLocation = async () => {
   const path = window.location.pathname;
   const route = routes[path] || routes[404];
   // append alert div if user is logged out and didn't set DND previously, and remove if they aren't
-  console.log(path)
 
   
   if(!isLogged && path == '/' && !localStorage.getItem('DND') ){
@@ -286,10 +285,10 @@ const navbarTemplateSignIn =
  `
 
   <li class="nav-link" id="loggedIn" >
-    <a onclick="(e)=>e.preventDefault()" href="/" id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
+    <a onclick="" href="/" id="signout-btn"  class="nav-btn link-tag">SignOut</a> 
   </li>
   <li class="nav-link" id="loggedIn" >
-    <a onclick="(e)=>e.preventDefault()" href="/profile" id="profile-btn" class="nav-btn link-tag">
+    <a onclick="" href="/profile" id="profile-btn" class="nav-btn link-tag">
     </a> 
   </li>
  
@@ -299,10 +298,10 @@ const navbarTemplateSignIn =
 const navbarTemplateLoggedOut = 
     `
    <li  class="nav-link" id="loggedOut">
-      <a onclick="(e)=>e.preventDefault()" href="/register"  class="link-tag">Register</a> 
+      <a onclick="" href="/register"  class="link-tag">Register</a> 
       </li>
     <li class='nav-link' id="loggedOut">
-      <a onclick="(e)=>e.preventDefault()" href="/signin"  class="link-tag">Sign In</a>
+      <a onclick="" href="/signin"  class="link-tag">Sign In</a>
     </li>
 `
   
@@ -331,6 +330,7 @@ window.addEventListener('load', async()=>{
     const navLinks =    $query('.nav-link')
     for(let link of navLinks){
       link.addEventListener('click', (e)=>{
+      
         route(e)
       })
     }
