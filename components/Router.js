@@ -3,7 +3,7 @@ import signIn from './views1/Classes/signInClass.js'
 import home from './views1/Classes/homeClass.js'
 import register from "./views1/Classes/registerClass.js";
 import { $query, protectedRoute, render } from "./utils.js";
-import { renderNavbarLogged, renderNavbarSignOut, renderNavbarProfile, renderNavbar } from "./navigation.js";
+import { renderNavbar } from "./navigation.js";
 export const navigateTo = url => {
     history.pushState(null, null, url);
     router();
@@ -65,6 +65,7 @@ export const router = async() => {
 
 
     $query('#app').innerHTML = await view.getHtml();
+    await view.smoothRender('slow')
     let JS = await view.getJS()
     let CSS = await view.getCSS()
   };
@@ -92,16 +93,34 @@ export const alertDivTemplate = (ACTION)=>{
     ` 
     switch(ACTION){
       case 'append':  {
+        $query('#navbar').classList.add('animate', 'smooth-remove')
+
+        ALERT_DIV.classList.add('animate', 'smooth-render', 'animate--slow', 'appear-from-up')
         body.appendChild(ALERT_DIV)
         $query('#hide-btn').addEventListener('click', ()=>{
-          body.removeChild(ALERT_DIV)
+          ALERT_DIV.classList.remove( 'smooth-render', 'appear-from-up')
+          ALERT_DIV.classList.add( 'smooth-remove', 'animate--slow', 'disappear-to-up')
+
+          $query('#navbar').classList.remove('animate', 'smooth-remove')
+          $query('#navbar').classList.add('animate', 'smooth-appear')
+
+          setTimeout(() => {
+            body.removeChild(ALERT_DIV)
+
+
+          }, 2000);
           localStorage.setItem('DND', 'true')
           renderNavbarSignOut()
         })
         return
       }
       case 'remove':{
-        $query('#alert-div') ? $query('#alert-div').remove() : null
+        $query('#navbar').classList.remove('animate', 'smooth-remove')
+        $query('#navbar').classList.add('animate', 'smooth-appear')
+
+        ALERT_DIV.classList.add('animate', 'smooth--remove', 'animate--slow')
+
+          $query('#alert-div') ? $query('#alert-div').remove() : null
   
       return
       }

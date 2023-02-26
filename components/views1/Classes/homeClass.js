@@ -24,8 +24,14 @@ export default class extends AbstactView {
     async getCSS() {
         return await import('../../CSS/chat.css')
     }
+    smoothRender(speed) {
+        document.getElementById('chat_container').classList.add('animate', 'smooth-render', `animate--${speed}`)
+    }
+    smoothRemove(speed) {
+         document.getElementById('chat_container').classList.remove('smooth-render',  `animate--${speed}`)
+         document.getElementById('chat_container').classList.add('smooth-remove')
+    }   
 }
-
-
+    
 
 

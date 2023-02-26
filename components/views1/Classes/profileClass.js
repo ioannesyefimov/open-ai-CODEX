@@ -8,7 +8,7 @@ export default class extends AbstactView {
 
     async getHtml() {
         return `
-            <div class="profile-component">
+            <div class="profile-component" id="profile-component">
                 <div class="credential_wrapper" id="credential_wrapper">
                     <div id="credentials"></div>
                     <div class='searchMessage-wrapper'>
@@ -28,6 +28,15 @@ export default class extends AbstactView {
 
     async getCSS() {
         return await import('../../CSS/profile.css')
+    }
+
+        
+    smoothRender(speed) {
+        document.getElementById('profile-component').classList.add('animate', 'smooth-render', `animate--${speed}`)
+    }
+    smoothRemove(speed) {
+         document.getElementById('profile-component').classList.remove('smooth-render',  `animate--${speed}`)
+         document.getElementById('profile-component').classList.add('smooth-remove')
     }
 }
 

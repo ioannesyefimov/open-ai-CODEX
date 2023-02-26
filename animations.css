@@ -1,0 +1,96 @@
+/* KEYFRAMES */
+
+@keyframes SmoothRemove {
+    from{
+        opacity: 1;
+        transform: scale(1);
+        
+        
+    }
+    to{
+        opacity: 0;
+        transform: scale(0);
+
+
+    }
+}
+
+@keyframes SmoothRender {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+
+
+        opacity: 1;
+
+    }
+}
+
+@keyframes AppearFromUp {
+    from{
+        transform: translateY(-120%);
+
+    }
+    to{
+        transform: translateY(-35%);
+
+    }
+}
+
+@keyframes DisapperToUp {
+    from{
+        transform: translateY(-35%);
+
+    }
+    to{
+        transform: translateY(-120%);
+
+    }
+}
+/* UTILITY CLASSES */
+
+.animate {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.animate.animate--infinite {
+    animation-iteration-count: infinite;
+}
+
+.animate.animate--delay-1s {
+    animation-delay: 1s;
+}
+
+.animate.animate--slow {
+    animation-duration: 2.5s ;
+}
+.animate.animate--fast {
+    animation-duration: .8s ;
+
+}
+
+/* animation classes */
+
+.smooth-remove {
+    animation-name: SmoothRemove;
+    animation-timing-function: ease-in-out;
+}
+.smooth-render {
+    animation-name: SmoothRender ;
+    animation-timing-function: ease-in-out;
+}
+
+.appear-from-up {
+    animation-name: AppearFromUp ;
+    animation-timing-function: ease-in-out;
+
+}
+.disappear-to-up {
+    animation-name: DisapperToUp;
+    animation-timing-function: ease-in-out;
+
+}

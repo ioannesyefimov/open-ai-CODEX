@@ -1,8 +1,6 @@
 import { navigateTo } from "./Router"
 import { router } from "./Router"
 import { $query, render } from "./utils"
-import { alertDivTemplate } from "./Router"
-const navbar = $query('#navbar')
 // NAVIGATION 
 
 const handleSignOut = ()=>{
@@ -15,57 +13,58 @@ const handleSignOut = ()=>{
     }
   }
 
-export const renderNavbarLogged = () => {
-  render(
-     `
-  <li class="nav-link" id="loggedIn" >
-    <button  id="signout-btn"  class="nav-btn link-tag">SignOut</button> 
-  </li>
-  <li class="nav-link" id="loggedIn" >
-    <a data-link href="/profile" id="profile-btn" class="nav-btn link-tag">
-    </a> 
-  </li>
  
-
-`
-, $query('#navbar'))
-$query('#signout-btn').addEventListener('click', handleSignOut)
-
-
-}
-
- 
-export const renderNavbarSignOut = () => {
-  render(     `
-  <li  class="nav-link" id="loggedOut">
-     <a data-link href="/register"  class="link-tag">Register</a> 
-     </li>
-   <li class='nav-link' id="loggedOut">
-     <a data-link href="/signin"  class="link-tag">Sign In</a>
-   </li>
-`
-, $query('#navbar'))
-}
-
-
-// profile navbar
-export const renderNavbarProfile  = () => {
-  
-  render( `
-  <li class="nav-link" id="loggedIn" >
-    <button    id="signout-btn"  class="nav-btn link-tag">SignOut</button> 
-  </li>
-  <li class="nav-link" id="loggedIn" >
-    <a href="/" data-link id="back-btn" class="nav-btn link-tag">Back</a> 
-  </li>
-
-`
-, $query('#navbar'))
-
-  $query('#signout-btn').addEventListener('click', handleSignOut)
-} 
 
 export const renderNavbar = (route, isLogged) => {
+  const renderNavbarLogged = () => {
+    render(
+       `
+    <li class="nav-link" id="loggedIn" >
+      <button  id="signout-btn"  class="nav-btn link-tag">SignOut</button> 
+    </li>
+    <li class="nav-link" id="loggedIn" >
+      <a data-link href="/profile" id="profile-btn" class="nav-btn link-tag">
+      </a> 
+    </li>
+   
+  
+  `
+  , $query('#navbar'))
+  $query('#signout-btn').addEventListener('click', handleSignOut)
+  
+  
+  }
+  
+   
+   const renderNavbarSignOut = () => {
+    render(     `
+    <li  class="nav-link" id="loggedOut">
+       <a data-link href="/register"  class="nav-btn link-tag">Register</a> 
+       </li>
+     <li class='nav-link' id="loggedOut">
+       <a data-link href="/signin"  class="nav-btn link-tag">Sign In</a>
+     </li>
+  `
+  , $query('#navbar'))
+  }
+  
+  
+  // profile navbar
+   const renderNavbarProfile  = () => {
+    
+    render( `
+    <li class="nav-link" id="loggedIn" >
+      <button    id="signout-btn"  class="nav-btn link-tag">SignOut</button> 
+    </li>
+    <li class="nav-link" id="loggedIn" >
+      <a href="/" data-link id="back-btn" class="nav-btn link-tag">Back</a> 
+    </li>
+  
+  `
+  , $query('#navbar'))
+  
+    $query('#signout-btn').addEventListener('click', handleSignOut)
+  }
   if(isLogged){
     switch(route){
       case '/profile': {

@@ -147,6 +147,4 @@
     line-height: 1.1;
   }
 
-  #chat_container::-webkit-scrollbar {
-    display: none;
-  }
+  

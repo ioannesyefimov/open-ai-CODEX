@@ -1,4 +1,4 @@
-import { renderNavbarSignOut } from "./navigation";
+import { renderNavbar } from "./navigation";
 import { navigateTo } from "./Router";
 
 // function to select element 
@@ -54,6 +54,6 @@ export const render = (template, node) =>{
 export const protectedRoute = (user) => {
   if(!user) {
     navigateTo('/')
-    renderNavbarSignOut()
+    renderNavbar('/', !user)
   }
 }

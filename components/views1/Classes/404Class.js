@@ -8,7 +8,7 @@ export default class extends AbstactView {
 
     async getHtml() {
         return `
-        <div class="notfound">
+        <div id="404" class="notfound">
           <h1>PAGE ISN'T FOUND 404</h1>
         </div>
     
@@ -21,6 +21,14 @@ export default class extends AbstactView {
 
     async getCSS() {
         return await import('../../CSS/404.css')
+    }
+
+    smoothRender(speed) {
+        document.getElementById('404').classList.add('animate', 'smooth-render', `animate--${speed}`)
+    }
+    smoothRemove(speed) {
+         document.getElementById('404').classList.remove('smooth-render',  `animate--${speed}`)
+         document.getElementById('404').classList.add('smooth-remove')
     }
 }
 

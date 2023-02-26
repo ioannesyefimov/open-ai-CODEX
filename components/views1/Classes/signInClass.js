@@ -4,6 +4,8 @@ export default class extends AbstactView {
     constructor() {
         super()
         this.setTitle('Sign In');
+  
+
     }
 
     async getHtml() {
@@ -29,5 +31,16 @@ export default class extends AbstactView {
     async getCSS() {
         return await import('../../CSS/login.css')
     }
+
+    
+    smoothRender(speed) {
+        document.getElementById('login-form').classList.add('animate', 'smooth-render', `animate--${speed}`)
+    }
+    smoothRemove(speed) {
+         document.getElementById('login-form').classList.remove('smooth-render',  `animate--${speed}`)
+         document.getElementById('login-form').classList.add('smooth-remove')
+    }
+
+
 }
 

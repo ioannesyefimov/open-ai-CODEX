@@ -219,8 +219,9 @@ button:focus-visible {
   display: flex;
   align-self: flex-end;
   position: absolute;
+  z-index: 5;
   right: 30px;
-  top: 25px;
+  top: 35px;
 }
 #navbar{
   gap:1rem;
@@ -275,25 +276,7 @@ button:focus-visible {
 
   /* logged out div */
   
-  .alert-div {
-    padding: 1rem 2rem;
-    z-index: 5;
-    position: absolute;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap:.5rem;
-    left: 50%;
-    color:wheat;
-    transform: translate(-48%, -40%);
-    box-shadow: 0 0 5px 1px  rgba(231, 220, 255, 0.79);
-  }
-  
-  .alert-div .wrapper {
-    display: flex;
-    justify-content: center;
-    gap:1rem;
-  }
+ 
   .back-btn{
     transition: 0.3 all ease-in-out;
     border: none;
@@ -315,4 +298,31 @@ button:focus-visible {
 #signout-btn {
   background: transparent !important;
   border: none !important; 
+}
+
+.alert-div {
+  position: absolute;
+  right: 0;
+  left: 0;
+margin: 0 auto;
+  padding: 1rem 2rem;
+  z-index: 5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap:.5rem;
+  color:wheat;
+  width: clamp(20rem, 15.423rem + 19.531vw, 33rem);
+  max-height: 12rem;
+  box-shadow: 0 0 5px 1px  rgba(231, 220, 255, 0.79);
+  font-size: clamp(0.85rem, 0.762rem + 0.376vw, 1.1rem);
+}
+.alert-div .nav-btn, .back-btn {
+  font-size: clamp(0.85rem, 0.797rem + 0.225vw, 1rem);
+}
+
+.alert-div .wrapper {
+  display: flex;
+  justify-content: center;
+  gap:1rem;
 }
