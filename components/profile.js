@@ -38,8 +38,10 @@ const handleInputChange = (event)=>{
 
 
 const profileMessagesTemplate = (messages) => {
-     $query('#messages-container').innerHTML = ``
-
+  let messagesContainer = $query('#messages-container') 
+  if(messagesContainer){
+    messagesContainer.innerHTML = ``
+  }
   if(messages.length > 1 ){
     messages.map((msg,i) => {
       const messageContainer = document.createElement('div')
@@ -131,15 +133,13 @@ const profileMessagesTemplate = (messages) => {
 // handle search questions
 
 
-async function profileHashLoad () {
+export async function profileHashLoad () {
   const LoggedUser = JSON.parse(localStorage.getItem('user'))
   
   if(LoggedUser){
     // wait until state of app is changed
     
-    const loadProfileCredentials = setInterval(()=>{
       render(profileCredentialsTemplate(LoggedUser),document.querySelector('#credentials') )
-    }, 20)
 
     const response = await fetch(`https://c0dinex.onrender.com/api/v1/post/profile/messages/${LoggedUser.email}`)
 
@@ -154,7 +154,6 @@ async function profileHashLoad () {
       render(`<div class="message-container"><p>You didn't send any messages. Try it out!</p></div>`, $query('#messages-container'))
      
     }
-    clearInterval(loadProfileCredentials)
   } 
 }
 

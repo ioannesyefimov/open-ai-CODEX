@@ -4,6 +4,7 @@ import home from './views1/Classes/homeClass.js'
 import register from "./views1/Classes/registerClass.js";
 import { $query, protectedRoute, render } from "./utils.js";
 import { renderNavbar } from "./navigation.js";
+import { profileHashLoad } from "./profile.js";
 export const navigateTo = url => {
     history.pushState(null, null, url);
     router();
@@ -66,6 +67,11 @@ export const router = async() => {
     $query('#app').innerHTML = await view.getHtml();
     let JS = await view.getJS()
     let render = await view.smoothRender('slow')
+    if(match.route.path == '/profile'){
+      console.log(match.route.path)
+      $query('#profile-component').classList.add('loaded')
+      profileHashLoad()
+    }
     let CSS = await view.getCSS()
   };
 
@@ -109,7 +115,7 @@ export const alertDivTemplate = (ACTION)=>{
 
           }, 2000);
           localStorage.setItem('DND', 'true')
-          renderNavbarSignOut()
+          render('/', window.localStorage.getItem('user'))
         })
         return
       }
