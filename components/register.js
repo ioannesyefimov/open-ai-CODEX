@@ -31,9 +31,14 @@ const handleRegister = async(e) =>{
 
 
 }
-
-setInterval(()=>{
+let submitInterval = setInterval(()=>{
   const submitBtn = document.getElementById('register')
-  submitBtn.addEventListener('click', handleRegister)
+  if(submitBtn){
+    submitBtn.addEventListener('click', handleRegister)
 
+  }
 }, 3000)
+
+setTimeout(() => {
+  clearInterval(submitInterval)
+}, 20000);

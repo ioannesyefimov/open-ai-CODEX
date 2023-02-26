@@ -40,8 +40,14 @@ const handleSignIn = async(e) =>{
 
 }
 
-setInterval(()=>{
-  const submitBtm = document.getElementById('signIn')
-  submitBtm.addEventListener('click', handleSignIn)
+let submitInterval = setInterval(()=>{
+  const submitBtn = document.getElementById('signIn')
+  if(submitBtn){
+    submitBtn.addEventListener('click', handleSignIn)
 
+  }
 }, 3000)
+
+setTimeout(() => {
+  clearInterval(submitInterval)
+}, 20000);

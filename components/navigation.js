@@ -65,6 +65,35 @@ export const renderNavbarProfile  = () => {
   $query('#signout-btn').addEventListener('click', handleSignOut)
 } 
 
+export const renderNavbar = (route, isLogged) => {
+  if(isLogged){
+    switch(route){
+      case '/profile': {
+        renderNavbarProfile()
+        break
+      } 
+      case "/": {
+        renderNavbarLogged()
+        break
+      }
+    }
+  } else if (!isLogged) {
+    switch(route){
+      case '/signin': {
+        renderNavbarSignOut()
+      } 
+      case "/register": {
+        renderNavbarSignOut()
+        
+      }
+      case '/': {
+        renderNavbarSignOut()
+        break
+      }
+    }
+  } 
+  
+}
 
 window.addEventListener('DOMContentLoaded', async()=>{
     document.body.addEventListener('click', (e)=>{
@@ -80,14 +109,7 @@ window.addEventListener('DOMContentLoaded', async()=>{
         setTimeout(() => {
             $query('#signout-btn').addEventListener('click', handleSignOut)
         }, 100);
-    } else if(!loggedUser && window.location.pathname == '/') {
-        renderNavbarSignOut()      
-        setTimeout(()=>{
-          alertDivTemplate('append')
-        }, 10000)
-      // delete user from memory -> sign out user
-  
-    }
+    } 
 
     router()
   })

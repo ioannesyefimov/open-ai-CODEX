@@ -3,56 +3,49 @@ import signIn from './views1/Classes/signInClass.js'
 import home from './views1/Classes/homeClass.js'
 import register from "./views1/Classes/registerClass.js";
 import { $query, protectedRoute, render } from "./utils.js";
-import { renderNavbarLogged, renderNavbarSignOut, renderNavbarProfile } from "./navigation.js";
+import { renderNavbarLogged, renderNavbarSignOut, renderNavbarProfile, renderNavbar } from "./navigation.js";
 export const navigateTo = url => {
     history.pushState(null, null, url);
     router();
 }
 
 export const router = async() => {
-let navbar = $query('#navbar')
-
+  let navbar = $query('#navbar')
   let path =window.location.pathname
-  switch(path){
-    case '/profile':{
-      renderNavbarProfile()
-      break
-    }
-    case '/register': 
-      renderNavbarSignOut()
-    case '/signin':
-    renderNavbarSignOut()
-    break
-  }
-  let routes = [{path: '404', view: 404}]
   let isLogged = localStorage.getItem('user')
+
+  renderNavbar(path, isLogged)
+
+ 
+  let routes = [{path: '404', view: 404}]
   if(isLogged){
     if(path == '/'){
       renderNavbarLogged()
     }
     routes = [...routes,
-      // { path: '/404', view: ()=> console.log(view)},
       { path: '/', view: home},
       { path: '/profile', view: profile},
 
     ]
-  } else if (!isLogged){
-    routes = [...routes,
-      // { path: '/404', view: ()=> console.log(view)},
-      { path: '/', view: home},
-      { path: '/signin', view: signIn },
-      { path: '/register', view: register},
-       ]
-       if(path == '/profile') {
-        protectedRoute(isLogged)
-       }
-    }
+  } 
+  else if (!isLogged){
+    routes = [...routes, { path: '/', view: home},{ path: '/signin', view: signIn },{ path: '/register', view: register}]
+      if(path == '/profile') {
+      protectedRoute(isLogged)
+      } else if (path == '/'){
+        setTimeout(() => {
+          alertDivTemplate('append')
+        }, 30000);
+      } else {
+        alertDivTemplate('remove')
+      }
+  }
   
 
     const potentialMatches = routes.map(route=>{
         return {
             route:route,
-            isMatch: location.pathname === route.path
+            isMatch: path === route.path
         };
     });
 
@@ -67,7 +60,6 @@ let navbar = $query('#navbar')
 
     // render navigation bar 
    
-    console.log(match)
     const view = new match.route.view()
 
 
@@ -82,6 +74,7 @@ window.addEventListener('popstate', router)
 // ROUTING
 
 export const alertDivTemplate = (ACTION)=>{
+  let body = $query('body')[0]
     let ALERT_DIV = document.createElement('div')
     ALERT_DIV.classList.add('alert-div')
     ALERT_DIV.setAttribute('id', 'alert-div')
@@ -99,16 +92,16 @@ export const alertDivTemplate = (ACTION)=>{
     ` 
     switch(ACTION){
       case 'append':  {
-        $query('body')[0].appendChild(ALERT_DIV)
+        body.appendChild(ALERT_DIV)
         $query('#hide-btn').addEventListener('click', ()=>{
-          $query('body')[0].removeChild(ALERT_DIV)
+          body.removeChild(ALERT_DIV)
           localStorage.setItem('DND', 'true')
-          render(navbarTemplateLoggedOut, navbar)
+          renderNavbarSignOut()
         })
         return
       }
       case 'remove':{
-        $query('body')[0].removeChild(ALERT_DIV)
+        $query('#alert-div') ? $query('#alert-div').remove() : null
   
       return
       }
