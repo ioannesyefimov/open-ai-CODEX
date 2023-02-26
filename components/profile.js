@@ -1,4 +1,3 @@
-import { renderNavbarProfile } from "./navigation"
 import { $query } from "./utils"
 const [stateQUESTIONS, setStateQuestions] = useState(null)
 

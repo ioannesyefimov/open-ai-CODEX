@@ -10,7 +10,6 @@ export const navigateTo = url => {
 }
 
 export const router = async() => {
-  let navbar = $query('#navbar')
   let path =window.location.pathname
   let isLogged = localStorage.getItem('user')
 
@@ -20,7 +19,7 @@ export const router = async() => {
   let routes = [{path: '404', view: 404}]
   if(isLogged){
     if(path == '/'){
-      renderNavbarLogged()
+      renderNavbar(path, isLogged, )
     }
     routes = [...routes,
       { path: '/', view: home},
@@ -65,8 +64,8 @@ export const router = async() => {
 
 
     $query('#app').innerHTML = await view.getHtml();
-    await view.smoothRender('slow')
     let JS = await view.getJS()
+    let render = await view.smoothRender('slow')
     let CSS = await view.getCSS()
   };
 

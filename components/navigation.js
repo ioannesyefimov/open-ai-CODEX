@@ -8,7 +8,7 @@ const handleSignOut = ()=>{
     console.log('working')
     if(isLogged){
       localStorage.removeItem('user')
-      renderNavbarSignOut()
+      renderNavbar('/', isLogged)
       navigateTo('/')
     }
   }
@@ -103,8 +103,9 @@ window.addEventListener('DOMContentLoaded', async()=>{
       })
  
     let loggedUser = await JSON.parse(localStorage.getItem('user'))
-    if(loggedUser){
-      renderNavbarLogged()
+    let path = window.location.pathname
+    if(loggedUser && path =='/'){
+      renderNavbar(loggedUser, path)
         setTimeout(() => {
             $query('#signout-btn').addEventListener('click', handleSignOut)
         }, 100);

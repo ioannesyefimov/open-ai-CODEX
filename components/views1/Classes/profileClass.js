@@ -31,10 +31,12 @@ export default class extends AbstactView {
     }
 
         
-    smoothRender(speed) {
+    async smoothRender(speed) {
+        // document.getElementById('profile-component').classList.remove('smooth-remove',  `animate--${speed}`)
+
         document.getElementById('profile-component').classList.add('animate', 'smooth-render', `animate--${speed}`)
     }
-    smoothRemove(speed) {
+    async smoothRemove(speed) {
          document.getElementById('profile-component').classList.remove('smooth-render',  `animate--${speed}`)
          document.getElementById('profile-component').classList.add('smooth-remove')
     }

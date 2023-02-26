@@ -38,7 +38,7 @@ export default class extends AbstactView {
     }
     smoothRemove(speed) {
          document.getElementById('login-form').classList.remove('smooth-render',  `animate--${speed}`)
-         document.getElementById('login-form').classList.add('smooth-remove')
+         document.getElementById('login-form').classList.add('smooth-remove', `animate--${speed}`)
     }
 
 
