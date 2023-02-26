@@ -1,4 +1,4 @@
-import { navbarTemplateProfile } from "./navigation"
+import { renderNavbarProfile } from "./navigation"
 import { $query } from "./utils"
 const [stateQUESTIONS, setStateQuestions] = useState(null)
 
@@ -137,7 +137,7 @@ async function profileHashLoad () {
   
   if(LoggedUser){
     // wait until state of app is changed
-    render(navbarTemplateProfile, $query('#navbar'))
+    
     const loadProfileCredentials = setInterval(()=>{
       render(profileCredentialsTemplate(LoggedUser),document.querySelector('#credentials') )
     }, 20)
@@ -156,7 +156,7 @@ async function profileHashLoad () {
      
     }
     clearInterval(loadProfileCredentials)
-  }
+  } 
 }
 
 

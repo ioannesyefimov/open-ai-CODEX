@@ -2,8 +2,8 @@ import profile from "./views1/Classes/profileClass.js";
 import signIn from './views1/Classes/signInClass.js'
 import home from './views1/Classes/homeClass.js'
 import register from "./views1/Classes/registerClass.js";
-import { $query, render } from "./utils.js";
-import { navbarTemplateLoggedOut, navbarTemplateProfile, navbarTemplateSignIn } from "./navigation.js";
+import { $query, protectedRoute, render } from "./utils.js";
+import { renderNavbarLogged, renderNavbarSignOut, renderNavbarProfile } from "./navigation.js";
 export const navigateTo = url => {
     history.pushState(null, null, url);
     router();
@@ -15,20 +15,20 @@ let navbar = $query('#navbar')
   let path =window.location.pathname
   switch(path){
     case '/profile':{
-      render(navbarTemplateProfile, navbar)
+      renderNavbarProfile()
       break
     }
     case '/register': 
-      render(navbarTemplateLoggedOut, navbar)
+      renderNavbarSignOut()
     case '/signin':
-      render(navbarTemplateLoggedOut, navbar)
-      break
+    renderNavbarSignOut()
+    break
   }
   let routes = [{path: '404', view: 404}]
   let isLogged = localStorage.getItem('user')
   if(isLogged){
     if(path == '/'){
-      render(navbarTemplateSignIn, navbar)
+      renderNavbarLogged()
     }
     routes = [...routes,
       // { path: '/404', view: ()=> console.log(view)},
@@ -36,20 +36,18 @@ let navbar = $query('#navbar')
       { path: '/profile', view: profile},
 
     ]
-  } else {
-    setTimeout(()=>{
-      alertDivTemplate('append')
-    }, 10000)
+  } else if (!isLogged){
     routes = [...routes,
       // { path: '/404', view: ()=> console.log(view)},
       { path: '/', view: home},
       { path: '/signin', view: signIn },
       { path: '/register', view: register},
-      
-
-   ];
-  }
-  console.log(routes)
+       ]
+       if(path == '/profile') {
+        protectedRoute(isLogged)
+       }
+    }
+  
 
     const potentialMatches = routes.map(route=>{
         return {
@@ -83,7 +81,7 @@ window.addEventListener('popstate', router)
 
 // ROUTING
 
-const alertDivTemplate = (ACTION)=>{
+export const alertDivTemplate = (ACTION)=>{
     let ALERT_DIV = document.createElement('div')
     ALERT_DIV.classList.add('alert-div')
     ALERT_DIV.setAttribute('id', 'alert-div')

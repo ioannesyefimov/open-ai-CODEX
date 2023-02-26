@@ -127,23 +127,7 @@
   .message-container{
     position: relative;
   }
-  .back-btn{
-    transition: 0.3 all ease-in-out;
-    border: none;
-    outline: none;
-    background: transparent;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    font-size: 1.25rem;
-    text-transform: lowercase;
-    color: rgba(231, 220, 255, 0.653)  
-  }
-  .back-btn:hover {
-    color:red;
-    text-decoration: underline;
-  
-  }
+
   
   /* Let's get this party started */
   ::-webkit-scrollbar {
@@ -175,26 +159,5 @@
     display: none;
   }
   
-  /* logged out div */
-  
-  .alert-div {
-    padding: 1rem 2rem;
-    z-index: 5;
-    position: absolute;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap:.5rem;
-    left: 50%;
-    color:wheat;
-    transform: translate(-48%, -40%);
-    box-shadow: 0 0 5px 1px  rgba(231, 220, 255, 0.79);
-  }
-  
-  .alert-div .wrapper {
-    display: flex;
-    justify-content: center;
-    gap:1rem;
-  }
-  
+
   

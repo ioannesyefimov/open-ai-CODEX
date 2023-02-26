@@ -1,3 +1,6 @@
+import { renderNavbarSignOut } from "./navigation";
+import { navigateTo } from "./Router";
+
 // function to select element 
 export function $query(selector) {
     if (typeof selector === 'object' && selector !== null) {
@@ -32,7 +35,7 @@ export const useState = (defaultValue) => {
     return [getValue, setValue];
   }
   
-  window.useState = useState
+window.useState = useState
   
 
 //   RENDER 
@@ -47,3 +50,10 @@ export const render = (template, node) =>{
   
   window.render = render
   
+
+export const protectedRoute = (user) => {
+  if(!user) {
+    navigateTo('/')
+    renderNavbarSignOut()
+  }
+}

@@ -33,7 +33,7 @@ const handleRegister = async(e) =>{
 }
 
 setInterval(()=>{
-  const submitBtm = document.getElementById('register')
-  submitBtm.addEventListener('click', handleRegister)
+  const submitBtn = document.getElementById('register')
+  submitBtn.addEventListener('click', handleRegister)
 
 }, 3000)
