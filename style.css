@@ -302,7 +302,6 @@ button:focus-visible {
 
 .alert-div {
   position: absolute;
-  transform: scale(0);
   right: 0;
   left: 0;
 margin: 0 auto;
